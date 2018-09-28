@@ -17,14 +17,14 @@ import (
 type Callback func(keycode int)
 var globalCallback Callback
 
-func AddCallback(callback Callback) int {
+func AddCallback(callback Callback) {
 	globalCallback=callback
 }
 
 //export showKeyCode
 func showKeyCode(keyCode C.int) int {
 	fmt.Println("show msg in go ",C.int(keyCode))
-	globalCallback(keyCode)
+	globalCallback(int(keyCode))
 	//defer C.free(unsafe.Pointer(keyCode)) // will destruct in c
 	return 1
 }
