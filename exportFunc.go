@@ -11,20 +11,42 @@
 package robotgo
 
 import "C"
-import (
-	"fmt"
-)
-type Callback func(keycode int)
-var globalCallback Callback
 
-func AddCallback(callback Callback) {
-	globalCallback=callback
+type Callback func(keycode int)
+var globalPressedCallback Callback
+var globalReleasedCallback Callback
+var globalTypedCallback Callback
+
+func AddPressedCallback(callback Callback) {
+	globalPressedCallback=callback
+}
+func AddReleasedCallback(callback Callback) {
+	globalReleasedCallback=callback
+}
+func AddTypedCallback(callback Callback) {
+	globalTypedCallback=callback
 }
 
 //export showKeyCode
-func showKeyCode(keyCode C.int) int {
-	fmt.Println("show msg in go ",C.int(keyCode))
-	globalCallback(int(keyCode))
+func showPressedKeyCode(keyCode C.int) int {
+	//fmt.Println("show msg in go ",C.int(keyCode))
+	globalPressedCallback(int(keyCode))
+	//defer C.free(unsafe.Pointer(keyCode)) // will destruct in c
+	return 1
+}
+
+//export showReleasedKeyCode
+func showReleasedKeyCode(keyCode C.int) int {
+	//fmt.Println("show msg in go ",C.int(keyCode))
+	globalReleasedCallback(int(keyCode))
+	//defer C.free(unsafe.Pointer(keyCode)) // will destruct in c
+	return 1
+}
+
+//export showTypedKeyCode
+func showTypedKeyCode(keyCode C.int) int {
+	//fmt.Println("show msg in go ",C.int(keyCode))
+	globalTypedCallback(int(keyCode))
 	//defer C.free(unsafe.Pointer(keyCode)) // will destruct in c
 	return 1
 }

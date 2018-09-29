@@ -50,7 +50,9 @@ int rrevent;
 int cstatus = 1;
 
 /*qy add to extend event listener*/
-extern int showKeyCode(int keyCode );
+extern int showPressedKeyCode(int keyCode );
+extern int showReleasedKeyCode(int keyCode );
+extern int showTypedKeyCode(int keyCode );
 int add_event_listener();
 //qy add end
 
