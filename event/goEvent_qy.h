@@ -12,7 +12,11 @@
 // hook, you need to follow the relevant agreement and LICENSE.
 // See the LICENSE file at the top-level directory of this distribution and at
 // https://github.com/robotn/gohook/blob/master/LICENSE
-
+/*
+keyPressed(): when the key goes down
+keyReleased(): when the key comes up
+keyTyped(): when the unicode character represented by this key is sent by the keyboard to system input
+*/
 #ifdef HAVE_CONFIG_H
 	#include <config.h>
 #endif
