@@ -265,25 +265,27 @@ void dispatch_proc_listener(iohook_event * const event) {
 
 	switch (event->type) {
 		case EVENT_KEY_PRESSED:
-			// If the escape key is pressed, naturally terminate the program.
-			if (event->data.keyboard.keycode == VC_ESCAPE) {
+            keycode = (int) event->data.keyboard.keycode;
+            // If the escape key is pressed, naturally terminate the program.
+            if (event->data.keyboard.keycode == VC_ESCAPE) {
 
-			}
-		case EVENT_KEY_RELEASED:
+            }
+            showPressedKeyCode(keycode);
+        case EVENT_KEY_RELEASED:
 
             keycode = (int) event->data.keyboard.keycode;
             //printf("EVENT_KEY_RELEASED:%d\n", keycode);
-            showKeyCode(keycode);
+            showReleasedKeyCode(keycode);
             //callback(keycode);
 
-			break;
+            break;
 
-		case EVENT_KEY_TYPED:
+        case EVENT_KEY_TYPED:
 
             keycode = (int) event->data.keyboard.keycode;
             //printf("EVENT_KEY_TYPED:%d\n", keycode);
-
-			break;
+            showTypedKeyCode(keycode);
+            break;
 
 		default:
 			break;
