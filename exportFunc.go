@@ -27,7 +27,7 @@ func AddTypedCallback(callback Callback) {
 	globalTypedCallback=callback
 }
 
-//export showKeyCode
+//export showPressedKeyCode
 func showPressedKeyCode(keyCode C.int) int {
 	//fmt.Println("show msg in go ",C.int(keyCode))
 	globalPressedCallback(int(keyCode))
